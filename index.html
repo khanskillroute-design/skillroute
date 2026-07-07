@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skill Route | Unlock Your Potential</title>
+<meta name="description" content="Skill Route — IT and Cybersecurity training, consultancy, and hands-on skill development in Islamabad.">
+<style>
+  :root{
+    --bg-950:#03080f;
+    --bg-900:#060f1c;
+    --bg-800:#0a1a2c;
+    --bg-700:#0f2438;
+    --cyan-300:#7ee8ff;
+    --cyan-400:#33d1ff;
+    --cyan-500:#00b8e6;
+    --cyan-600:#0089ad;
+    --text-light:#eaf6fb;
+    --text-muted:#8ea4b8;
+    --max-width:1180px;
+    --radius:10px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Segoe UI', system-ui, -apple-system, sans-serif;
+    background:var(--bg-950);
+    color:var(--text-light);
+    line-height:1.65;
+    overflow-x:hidden;
+  }
+
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;}
+  img{max-width:100%;display:block;}
+
+  ::selection{background:var(--cyan-500);color:var(--bg-950);}
+
+  .container{
+    max-width:var(--max-width);
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:200;
+    background:rgba(3,8,15,0.85);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(51,209,255,0.15);
+    transition:background 0.3s ease;
+  }
+
+  nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 24px;
+    max-width:var(--max-width);
+    margin:0 auto;
+  }
+
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:1.4rem;
+    font-weight:800;
+    letter-spacing:0.5px;
+  }
+
+  .logo-mark{
+    width:44px;height:44px;
+    flex-shrink:0;
+    border-radius:11px;
+    background:linear-gradient(135deg, var(--cyan-400), var(--cyan-600));
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 0 22px rgba(51,209,255,0.45);
+  }
+
+  .logo-mark svg{width:26px;height:26px;}
+
+  .logo span.route{color:var(--cyan-400);}
+
+  .nav-links{
+    display:flex;
+    align-items:center;
+    gap:34px;
+  }
+
+  .nav-links a{
+    font-size:0.95rem;
+    font-weight:600;
+    color:var(--text-light);
+    position:relative;
+    padding:6px 2px;
+    transition:color .25s ease;
+  }
+
+  .nav-links a::after{
+    content:"";
+    position:absolute;left:0;bottom:0;
+    width:0;height:2px;
+    background:var(--cyan-400);
+    transition:width .25s ease;
+  }
+
+  .nav-links a:hover{color:var(--cyan-300);}
+  .nav-links a:hover::after{width:100%;}
+
+  .nav-cta{
+    padding:10px 22px !important;
+    background:var(--cyan-500);
+    color:var(--bg-950) !important;
+    border-radius:6px;
+    font-weight:700 !important;
+  }
+
+  .nav-cta::after{display:none;}
+  .nav-cta:hover{background:var(--cyan-400);color:var(--bg-950) !important;}
+
+  .nav-toggle{
+    display:none;
+    flex-direction:column;
+    gap:6px;
+    background:none;border:none;cursor:pointer;
+    padding:10px;
+    margin:-10px;
+  }
+  .nav-toggle span{
+    width:28px;height:3px;
+    background:var(--cyan-400);
+    display:block;
+    border-radius:2px;
+    transition:transform .25s ease, opacity .25s ease;
+  }
+  .nav-toggle.active span:nth-child(1){transform:translateY(9px) rotate(45deg);}
+  .nav-toggle.active span:nth-child(2){opacity:0;}
+  .nav-toggle.active span:nth-child(3){transform:translateY(-9px) rotate(-45deg);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    position:relative;
+    padding:140px 24px 80px;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(51,209,255,0.12), transparent 45%),
+      radial-gradient(circle at 85% 75%, rgba(0,184,230,0.10), transparent 50%),
+      linear-gradient(180deg, var(--bg-950), var(--bg-900));
+  }
+
+  .hero::before{
+    content:"";
+    position:absolute;inset:0;
+    background-image:
+      linear-gradient(rgba(51,209,255,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(51,209,255,0.05) 1px, transparent 1px);
+    background-size:48px 48px;
+    mask-image:radial-gradient(ellipse at center, black 40%, transparent 75%);
+    pointer-events:none;
+  }
+
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:60px;
+    align-items:center;
+    position:relative;
+    max-width:var(--max-width);
+    margin:0 auto;
+    width:100%;
+  }
+
+  .hero-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 16px;
+    border:1px solid rgba(51,209,255,0.35);
+    border-radius:30px;
+    color:var(--cyan-300);
+    font-size:0.82rem;
+    font-weight:600;
+    letter-spacing:0.5px;
+    margin-bottom:24px;
+  }
+
+  .hero-badge .dot{
+    width:7px;height:7px;border-radius:50%;
+    background:var(--cyan-400);
+    box-shadow:0 0 8px var(--cyan-400);
+  }
+
+  .hero h1{
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    font-weight:800;
+    line-height:1.15;
+    margin-bottom:22px;
+  }
+
+  .hero h1 .accent{
+    color:var(--cyan-400);
+    text-shadow:0 0 30px rgba(51,209,255,0.35);
+  }
+
+  .hero p.lead{
+    color:var(--text-muted);
+    font-size:1.1rem;
+    max-width:560px;
+    margin-bottom:36px;
+  }
+
+  .hero-cta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:48px;}
+
+  .btn{
+    display:inline-block;
+    padding:14px 30px;
+    border-radius:6px;
+    font-weight:700;
+    font-size:0.95rem;
+    letter-spacing:0.3px;
+    transition:all .3s ease;
+    border:1px solid var(--cyan-500);
+  }
+
+  .btn-primary{background:var(--cyan-500);color:var(--bg-950);}
+  .btn-primary:hover{background:var(--cyan-400);transform:translateY(-3px);box-shadow:0 14px 30px rgba(51,209,255,0.3);}
+  .btn-primary:active{transform:translateY(0) scale(0.97);box-shadow:0 6px 14px rgba(51,209,255,0.35);}
+
+  .btn-outline{background:transparent;color:var(--cyan-300);}
+  .btn-outline:hover{background:rgba(51,209,255,0.08);transform:translateY(-3px);}
+  .btn-outline:active{transform:translateY(0) scale(0.97);background:rgba(51,209,255,0.15);}
+
+  .hero-stats{
+    display:flex;
+    gap:40px;
+    flex-wrap:wrap;
+  }
+
+  .hero-stats .stat h3{font-size:1.7rem;font-weight:800;color:var(--cyan-400);}
+  .hero-stats .stat span{font-size:0.82rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;}
+
+  .hero-visual{
+    position:relative;
+    aspect-ratio:1/1.05;
+    border-radius:20px;
+    background:linear-gradient(160deg, var(--bg-800), var(--bg-900));
+    border:1px solid rgba(51,209,255,0.25);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    box-shadow:0 30px 60px rgba(0,0,0,0.5);
+  }
+
+  .hero-visual::before{
+    content:"</>";
+    font-size:6rem;
+    font-weight:800;
+    color:rgba(51,209,255,0.18);
+    position:absolute;
+  }
+
+  .hero-visual-ring{
+    width:70%;aspect-ratio:1;
+    border:1px solid rgba(51,209,255,0.4);
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    position:relative;
+    animation:spin 18s linear infinite;
+  }
+
+  .hero-visual-ring::before,.hero-visual-ring::after{
+    content:"";
+    position:absolute;
+    width:10px;height:10px;
+    border-radius:50%;
+    background:var(--cyan-400);
+    box-shadow:0 0 14px var(--cyan-400);
+  }
+  .hero-visual-ring::before{top:-5px;left:50%;transform:translateX(-50%);}
+  .hero-visual-ring::after{bottom:-5px;left:50%;transform:translateX(-50%);}
+
+  .hero-visual-core{
+    width:55%;aspect-ratio:1;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(51,209,255,0.25), transparent 70%);
+    border:1px solid rgba(51,209,255,0.3);
+    display:flex;align-items:center;justify-content:center;
+    font-size:4.2rem;
+    color:var(--cyan-300);
+  }
+
+  @keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{padding:110px 0;position:relative;}
+
+  .section-tag{
+    color:var(--cyan-400);
+    text-transform:uppercase;
+    letter-spacing:3px;
+    font-size:0.78rem;
+    font-weight:700;
+    margin-bottom:12px;
+    display:block;
+  }
+
+  .section-title{
+    font-size:clamp(1.8rem, 4vw, 2.5rem);
+    font-weight:800;
+    margin-bottom:18px;
+  }
+
+  .section-title .accent{color:var(--cyan-400);}
+
+  .section-intro{
+    color:var(--text-muted);
+    max-width:620px;
+    margin-bottom:56px;
+    font-size:1.03rem;
+  }
+
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:20px;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about{background:var(--bg-900);}
+
+  .about-grid{
+    display:grid;
+    grid-template-columns:1fr 1.3fr;
+    gap:60px;
+    align-items:center;
+  }
+
+  .about-visual{
+    position:relative;
+    border-radius:16px;
+    background:linear-gradient(150deg, var(--bg-800), var(--bg-700));
+    border:1px solid rgba(51,209,255,0.2);
+    aspect-ratio:4/5;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .about-visual-inner{
+    font-size:3.5rem;
+    color:var(--cyan-400);
+    opacity:0.5;
+  }
+
+  .about-text p{color:var(--text-muted);margin-bottom:18px;}
+
+  .about-points{margin-top:26px;display:grid;gap:14px;}
+
+  .about-point{
+    display:flex;
+    align-items:flex-start;
+    gap:14px;
+  }
+
+  .about-point .check{
+    width:26px;height:26px;flex-shrink:0;
+    border-radius:50%;
+    background:rgba(51,209,255,0.15);
+    color:var(--cyan-400);
+    display:flex;align-items:center;justify-content:center;
+    font-size:0.85rem;font-weight:800;
+  }
+
+  .about-point p{margin:0;color:var(--text-light);font-size:0.95rem;}
+
+  /* ---------- STATS BAND ---------- */
+  .stats-band{
+    background:linear-gradient(135deg, var(--bg-800), var(--bg-700));
+    padding:60px 0;
+    border-top:1px solid rgba(51,209,255,0.15);
+    border-bottom:1px solid rgba(51,209,255,0.15);
+  }
+
+  .stats-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:30px;
+    text-align:center;
+  }
+
+  .stats-grid .stat h3{
+    font-size:2.4rem;font-weight:800;color:var(--cyan-400);
+    text-shadow:0 0 24px rgba(51,209,255,0.3);
+  }
+  .stats-grid .stat span{color:var(--text-muted);font-size:0.88rem;text-transform:uppercase;letter-spacing:0.5px;}
+
+  /* ---------- SERVICES ---------- */
+  .services-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:28px;
+  }
+
+  .service-card{
+    background:var(--bg-800);
+    border:1px solid rgba(51,209,255,0.12);
+    border-radius:var(--radius);
+    padding:34px 28px;
+    transition:all .3s ease;
+    position:relative;
+    overflow:hidden;
+  }
+
+  .service-card::before{
+    content:"";
+    position:absolute;top:0;left:0;right:0;height:3px;
+    background:linear-gradient(90deg, var(--cyan-400), transparent);
+    opacity:0;transition:opacity .3s ease;
+  }
+
+  .service-card:hover{
+    transform:translateY(-8px);
+    border-color:var(--cyan-500);
+    box-shadow:0 20px 40px rgba(0,0,0,0.4);
+  }
+  .service-card:hover::before{opacity:1;}
+
+  .service-icon{
+    width:72px;height:72px;
+    border-radius:16px;
+    background:rgba(51,209,255,0.12);
+    color:var(--cyan-400);
+    display:flex;align-items:center;justify-content:center;
+    font-size:2.4rem;
+    margin-bottom:20px;
+  }
+
+  .service-card h3{font-size:1.2rem;margin-bottom:10px;}
+  .service-card p{color:var(--text-muted);font-size:0.93rem;}
+
+  /* ---------- COURSES ---------- */
+  .courses{background:var(--bg-900);}
+
+  .courses-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:26px;
+  }
+
+  .course-card{
+    background:var(--bg-800);
+    border-radius:var(--radius);
+    border:1px solid rgba(51,209,255,0.1);
+    overflow:hidden;
+    transition:all .3s ease;
+  }
+
+  .course-card:hover{
+    transform:translateY(-6px);
+    border-color:var(--cyan-500);
+    box-shadow:0 16px 32px rgba(0,0,0,0.35);
+  }
+
+  .course-thumb{
+    height:130px;
+    background:linear-gradient(135deg, var(--bg-700), var(--bg-950));
+    display:flex;align-items:center;justify-content:center;
+    font-size:3.2rem;color:var(--cyan-400);
+    border-bottom:1px solid rgba(51,209,255,0.12);
+  }
+
+  .course-body{padding:24px;}
+  .course-duration{
+    display:inline-block;
+    font-size:0.72rem;
+    color:var(--cyan-300);
+    border:1px solid rgba(51,209,255,0.35);
+    padding:3px 10px;
+    border-radius:20px;
+    margin-bottom:14px;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+  }
+  .course-body h3{font-size:1.1rem;margin-bottom:8px;}
+  .course-body p{color:var(--text-muted);font-size:0.9rem;margin-bottom:16px;}
+  .course-link{color:var(--cyan-400);font-size:0.88rem;font-weight:700;}
+  .course-link:hover{text-decoration:underline;}
+
+  /* ---------- FACILITIES ---------- */
+  .facilities-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:24px;
+  }
+
+  .facility-card{
+    text-align:center;
+    padding:34px 20px;
+    background:var(--bg-800);
+    border-radius:var(--radius);
+    border:1px solid rgba(51,209,255,0.1);
+    transition:all .3s ease;
+  }
+  .facility-card:hover{border-color:var(--cyan-500);transform:translateY(-6px);}
+  .facility-card .icon{font-size:3rem;color:var(--cyan-400);margin-bottom:16px;}
+  .facility-card h3{font-size:1.02rem;margin-bottom:8px;}
+  .facility-card p{color:var(--text-muted);font-size:0.88rem;}
+
+  /* ---------- CONTACT ---------- */
+  .contact{background:var(--bg-900);}
+
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1.2fr;
+    gap:60px;
+  }
+
+  .contact-info h3{font-size:1.3rem;margin-bottom:20px;color:var(--cyan-400);}
+
+  .contact-item{
+    display:flex;align-items:center;gap:14px;
+    margin-bottom:20px;color:var(--text-muted);
+  }
+
+  .contact-item .icon{
+    width:52px;height:52px;flex-shrink:0;
+    border:1px solid var(--cyan-500);
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--cyan-400);
+    font-size:1.3rem;
+  }
+
+  .socials{display:flex;gap:14px;margin-top:30px;}
+  .socials a{
+    width:42px;height:42px;
+    border:1px solid rgba(51,209,255,0.4);
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--cyan-400);font-size:0.85rem;
+    transition:all .3s ease;
+  }
+  .socials a:hover{background:var(--cyan-500);color:var(--bg-950);transform:translateY(-3px);}
+
+  form{display:flex;flex-direction:column;gap:18px;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+
+  input,textarea{
+    background:var(--bg-800);
+    border:1px solid rgba(51,209,255,0.2);
+    border-radius:6px;
+    padding:14px 16px;
+    color:var(--text-light);
+    font-family:inherit;font-size:0.95rem;
+    outline:none;transition:border-color .25s ease;
+  }
+  input:focus,textarea:focus{border-color:var(--cyan-500);}
+  textarea{resize:vertical;min-height:130px;}
+
+  button[type="submit"]{cursor:pointer;font-family:inherit;align-self:flex-start;}
+
+  .form-note{font-size:0.82rem;color:var(--text-muted);margin-top:4px;}
+
+  /* ---------- CTA BAND ---------- */
+  .cta-band{
+    background:linear-gradient(135deg, rgba(0,184,230,0.12), rgba(51,209,255,0.05));
+    border-top:1px solid rgba(51,209,255,0.2);
+    border-bottom:1px solid rgba(51,209,255,0.2);
+    text-align:center;
+    padding:80px 24px;
+  }
+  .cta-band h2{font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:800;margin-bottom:16px;}
+  .cta-band p{color:var(--text-muted);max-width:520px;margin:0 auto 32px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--bg-950);padding:60px 0 30px;border-top:1px solid rgba(51,209,255,0.1);}
+
+  .footer-grid{
+    display:grid;
+    grid-template-columns:1.4fr 1fr 1fr 1.2fr;
+    gap:40px;
+    margin-bottom:50px;
+  }
+
+  .footer-brand p{color:var(--text-muted);font-size:0.9rem;margin-top:14px;max-width:280px;}
+
+  .footer-col h4{font-size:0.95rem;margin-bottom:18px;color:var(--text-light);}
+  .footer-col ul li{margin-bottom:10px;}
+  .footer-col a{color:var(--text-muted);font-size:0.9rem;transition:color .2s ease;}
+  .footer-col a:hover{color:var(--cyan-400);}
+
+  .newsletter-form{display:flex;gap:0;margin-top:16px;}
+  .newsletter-form input{
+    border-radius:6px 0 0 6px;
+    border-right:none;
+    flex:1;
+  }
+  .newsletter-form button{
+    border:1px solid var(--cyan-500);
+    border-radius:0 6px 6px 0;
+    background:var(--cyan-500);
+    color:var(--bg-950);
+    padding:0 20px;
+    font-weight:700;
+    cursor:pointer;
+  }
+
+  .footer-bottom{
+    border-top:1px solid rgba(51,209,255,0.1);
+    padding-top:24px;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+    color:var(--text-muted);
+    font-size:0.85rem;
+  }
+
+  .footer-bottom .accent{color:var(--cyan-400);}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:960px){
+    .hero-grid, .about-grid, .contact-grid{grid-template-columns:1fr;}
+    .hero-visual{max-width:360px;margin:0 auto;order:-1;}
+    .about-visual{max-width:320px;margin:0 auto;}
+    .stats-grid{grid-template-columns:repeat(2,1fr);}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+  }
+
+  @media (max-width:700px){
+    .nav-links{
+      position:fixed;
+      top:0;left:0;right:0;bottom:0;
+      height:100vh;
+      background:var(--bg-900);
+      flex-direction:column;align-items:center;justify-content:center;
+      gap:6px;padding:0;overflow-y:auto;
+      opacity:0;visibility:hidden;
+      transform:translateY(-12px);
+      transition:opacity .3s ease, transform .3s ease, visibility 0s linear .3s;
+      z-index:150;
+    }
+    .nav-links.open{
+      opacity:1;visibility:visible;transform:translateY(0);
+      transition:opacity .3s ease, transform .3s ease;
+    }
+    .nav-links li{width:100%;text-align:center;}
+    .nav-links a{display:block;padding:16px;font-size:1.15rem;}
+    .nav-links li:last-child{margin-top:14px;}
+    .nav-toggle{display:flex;position:relative;z-index:160;}
+    .form-row{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr;gap:32px;}
+    .newsletter-form{max-width:320px;}
+  }
+
+  body.nav-open{overflow:hidden;}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#home" class="logo"><span class="logo-mark"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.5 4.5 5.3v5.4c0 5.1 3.2 8.9 7.5 10.3 4.3-1.4 7.5-5.2 7.5-10.3V5.3L12 2.5z" fill="#03080f"/><path d="M8 12.2l2.7 2.7L16.3 9" stroke="#33d1ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>Skill<span class="route">Route</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#courses">Courses</a></li>
+      <li><a href="#facilities">Facilities</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#contact" class="nav-cta">Enroll Now</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <span class="hero-badge"><span class="dot"></span> IT &amp; Cybersecurity Training, Islamabad</span>
+      <h1>Unlock Your Potential with <span class="accent">Skill Route</span></h1>
+      <p class="lead">Hands-on, industry-relevant training in cybersecurity, networking, programming and more &mdash; built by IT and security professionals to get you job-ready, fast.</p>
+      <div class="hero-cta">
+        <a href="#courses" class="btn btn-primary">Explore Courses</a>
+        <a href="#contact" class="btn btn-outline">Talk to Us</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><h3>10</h3><span>Specialized Subjects</span></div>
+        <div class="stat"><h3>100+</h3><span>Satisfied Students</span></div>
+        <div class="stat"><h3>25</h3><span>Modern Lab Equipments</span></div>
+        <div class="stat"><h3>10</h3><span>Industry Experts</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-visual-ring">
+        <div class="hero-visual-core">&#128274;</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="container about-grid">
+    <div class="about-visual"><div class="about-visual-inner">&#127891;</div></div>
+    <div class="about-text">
+      <span class="section-tag">About Us</span>
+      <h2 class="section-title">A collaborative initiative built for <span class="accent">real skills</span></h2>
+      <p>Skill Route is a collaborative initiative conceived by a team of skilled individuals from the IT and cybersecurity domains, bringing together industrial and academic experience under one roof.</p>
+      <p>Our mission is to empower individuals with industry-relevant skills and knowledge through practical, hands-on training &mdash; not just theory.</p>
+      <div class="about-points">
+        <div class="about-point"><span class="check">&#10003;</span><p>State-of-the-art infrastructure and fully-equipped labs</p></div>
+        <div class="about-point"><span class="check">&#10003;</span><p>Instructors with real industry and academic experience</p></div>
+        <div class="about-point"><span class="check">&#10003;</span><p>Practical, project-based learning tracks</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stats-band">
+  <div class="container stats-grid">
+    <div class="stat"><h3>10</h3><span>Specialized Subjects</span></div>
+    <div class="stat"><h3>100+</h3><span>Satisfied Students</span></div>
+    <div class="stat"><h3>25</h3><span>Modern Lab Equipments</span></div>
+    <div class="stat"><h3>10</h3><span>Industry Experts</span></div>
+  </div>
+</div>
+
+<section class="services" id="services">
+  <div class="container">
+    <span class="section-tag">What We Offer</span>
+    <h2 class="section-title">Our <span class="accent">Services</span></h2>
+    <p class="section-intro">From training to consultancy, Skill Route supports individuals and organizations across the IT and security spectrum.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">&#128187;</div>
+        <h3>IT &amp; CS Services</h3>
+        <p>End-to-end IT and computer science services, from development to deployment, tailored to your needs.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">&#128274;</div>
+        <h3>IT Security Consultancy</h3>
+        <p>Expert guidance on securing your infrastructure, applications, and processes against modern threats.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">&#127919;</div>
+        <h3>Courses &amp; Training</h3>
+        <p>Structured, 45-day hands-on training programs across today's most in-demand technical disciplines.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="courses" id="courses">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="section-tag">Training Programs</span>
+        <h2 class="section-title">Our <span class="accent">Courses</span></h2>
+        <p class="section-intro" style="margin-bottom:0;">Six focused 45-day tracks designed to take you from fundamentals to job-ready skills.</p>
+      </div>
+    </div>
+    <div style="height:40px;"></div>
+    <div class="courses-grid">
+      <div class="course-card">
+        <div class="course-thumb">&#128421;</div>
+        <div class="course-body">
+          <span class="course-duration">45 Days</span>
+          <h3>Operating Systems</h3>
+          <p>Core concepts and hands-on administration of modern operating systems.</p>
+          <a href="#contact" class="course-link">Enroll Now &rarr;</a>
+        </div>
+      </div>
+      <div class="course-card">
+        <div class="course-thumb">&#128272;</div>
+        <div class="course-body">
+          <span class="course-duration">45 Days</span>
+          <h3>Cybersecurity</h3>
+          <p>Practical defensive and offensive security skills using real-world tools and labs.</p>
+          <a href="#contact" class="course-link">Enroll Now &rarr;</a>
+        </div>
+      </div>
+      <div class="course-card">
+        <div class="course-thumb">&#127760;</div>
+        <div class="course-body">
+          <span class="course-duration">45 Days</span>
+          <h3>Networking</h3>
+          <p>Design, configure, and troubleshoot modern network infrastructure.</p>
+          <a href="#contact" class="course-link">Enroll Now &rarr;</a>
+        </div>
+      </div>
+      <div class="course-card">
+        <div class="course-thumb">&#128187;</div>
+        <div class="course-body">
+          <span class="course-duration">45 Days</span>
+          <h3>Programming</h3>
+          <p>Build a strong foundation in programming logic and modern development practices.</p>
+          <a href="#contact" class="course-link">Enroll Now &rarr;</a>
+        </div>
+      </div>
+      <div class="course-card">
+        <div class="course-thumb">&#127912;</div>
+        <div class="course-body">
+          <span class="course-duration">45 Days</span>
+          <h3>Graphics Designing</h3>
+          <p>Learn industry-standard design tools and principles for visual communication.</p>
+          <a href="#contact" class="course-link">Enroll Now &rarr;</a>
+        </div>
+      </div>
+      <div class="course-card">
+        <div class="course-thumb">&#128200;</div>
+        <div class="course-body">
+          <span class="course-duration">45 Days</span>
+          <h3>Digital Marketing</h3>
+          <p>Master modern digital marketing strategy, tools, and analytics.</p>
+          <a href="#contact" class="course-link">Enroll Now &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="facilities" id="facilities">
+  <div class="container">
+    <span class="section-tag">Why Skill Route</span>
+    <h2 class="section-title">Facilities &amp; <span class="accent">Resources</span></h2>
+    <p class="section-intro">State-of-the-art infrastructure built to support real, hands-on learning.</p>
+    <div class="facilities-grid">
+      <div class="facility-card">
+        <div class="icon">&#127970;</div>
+        <h3>Modern Labs</h3>
+        <p>Fully-equipped labs with 25+ modern lab equipment sets.</p>
+      </div>
+      <div class="facility-card">
+        <div class="icon">&#128225;</div>
+        <h3>Latest Tools</h3>
+        <p>Access to current industry-standard tools and technologies.</p>
+      </div>
+      <div class="facility-card">
+        <div class="icon">&#128101;</div>
+        <h3>Expert Mentors</h3>
+        <p>Learn directly from 10+ experienced industry professionals.</p>
+      </div>
+      <div class="facility-card">
+        <div class="icon">&#128196;</div>
+        <h3>Practical Curriculum</h3>
+        <p>Project-based tracks focused on real, applicable skills.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <h2>Ready to unlock your potential?</h2>
+  <p>Join Skill Route and start building industry-relevant skills with hands-on, expert-led training.</p>
+  <a href="#contact" class="btn btn-primary">Get Started Today</a>
+</div>
+
+<section class="contact" id="contact">
+  <div class="container contact-grid">
+    <div class="contact-info">
+      <span class="section-tag">Get In Touch</span>
+      <h2 class="section-title">Let's <span class="accent">Connect</span></h2>
+      <p class="section-intro" style="margin-bottom:30px;">Have a question about our courses or services? Send us a message.</p>
+
+      <div class="contact-item">
+        <span class="icon">&#9993;</span>
+        <span>info@skillroute.pk</span>
+      </div>
+      <div class="contact-item">
+        <span class="icon">&#9742;</span>
+        <span>+92 309 9717937</span>
+      </div>
+      <div class="contact-item">
+        <span class="icon">&#128205;</span>
+        <span>Building No 26, Tipu Blvd South DHA-II, Islamabad</span>
+      </div>
+
+      <div class="socials">
+        <a href="#" aria-label="Facebook">fb</a>
+        <a href="#" aria-label="LinkedIn">in</a>
+        <a href="#" aria-label="Instagram">ig</a>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <form action="mailto:info@skillroute.pk" method="post" enctype="text/plain">
+        <div class="form-row">
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Your Email" required>
+        </div>
+        <input type="text" name="subject" placeholder="Subject">
+        <textarea name="message" placeholder="Your Message" required></textarea>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+        <p class="form-note">This form opens your email client to send the message directly.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#home" class="logo"><span class="logo-mark"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.5 4.5 5.3v5.4c0 5.1 3.2 8.9 7.5 10.3 4.3-1.4 7.5-5.2 7.5-10.3V5.3L12 2.5z" fill="#03080f"/><path d="M8 12.2l2.7 2.7L16.3 9" stroke="#33d1ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>Skill<span class="route">Route</span></a>
+        <p>Unlock your potential with hands-on IT and cybersecurity training built by industry professionals.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#courses">Latest Courses</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Courses</h4>
+        <ul>
+          <li><a href="#courses">Cybersecurity</a></li>
+          <li><a href="#courses">Networking</a></li>
+          <li><a href="#courses">Programming</a></li>
+          <li><a href="#courses">Digital Marketing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Newsletter</h4>
+        <p style="color:var(--text-muted);font-size:0.88rem;">Subscribe for updates on new courses and events.</p>
+        <form class="newsletter-form" onsubmit="return false;">
+          <input type="email" placeholder="Your email" required>
+          <button type="submit">Join</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="year"></span> <span class="accent">Skill Route</span>. All rights reserved.</p>
+      <p>Building No 26, Tipu Blvd South DHA-II, Islamabad</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+
+  navToggle.addEventListener('click', function(){
+    navLinks.classList.toggle('open');
+    navToggle.classList.toggle('active');
+    document.body.classList.toggle('nav-open');
+  });
+
+  navLinks.querySelectorAll('a').forEach(function(link){
+    link.addEventListener('click', function(){
+      navLinks.classList.remove('open');
+      navToggle.classList.remove('active');
+      document.body.classList.remove('nav-open');
+    });
+  });
+</script>
+
+</body>
+</html>

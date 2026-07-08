@@ -736,6 +736,24 @@
 
   .form-note{font-size:0.82rem;color:var(--text-muted);margin-top:4px;}
 
+  .form-status{
+    padding:14px 16px;
+    border-radius:8px;
+    margin-bottom:18px;
+    font-size:0.92rem;
+    font-weight:600;
+  }
+  .form-status.success{
+    background:rgba(51,209,255,0.12);
+    border:1px solid var(--cyan-500);
+    color:var(--cyan-300);
+  }
+  .form-status.error{
+    background:rgba(255,90,90,0.1);
+    border:1px solid rgba(255,90,90,0.5);
+    color:#ff9a9a;
+  }
+
   /* ---------- CTA BAND ---------- */
   .cta-band{
     background:linear-gradient(135deg, rgba(0,184,230,0.12), rgba(51,209,255,0.05));
@@ -1118,7 +1136,8 @@
     </div>
 
     <div class="contact-form">
-      <form action="https://formsubmit.co/info@skillroute.pk" method="POST">
+      <div id="formStatus" class="form-status" style="display:none;"></div>
+      <form action="contact.php" method="POST">
         <div class="form-row">
           <input type="text" name="name" placeholder="Your Name" required>
           <input type="email" name="email" placeholder="Your Email" required>
@@ -1126,13 +1145,8 @@
         <input type="text" name="subject" placeholder="Subject">
         <textarea name="message" placeholder="Your Message" required></textarea>
 
-        <!-- FormSubmit settings -->
-        <input type="hidden" name="_subject" value="New enquiry from Skill Route website">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_captcha" value="true">
-        <input type="hidden" name="_next" value="https://skillroute.pk/#contact">
         <!-- honeypot spam trap: bots fill this, humans don't -->
-        <input type="text" name="_honey" style="display:none">
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
 
         <button type="submit" class="btn btn-primary">Send Message</button>
         <p class="form-note">Your message is sent straight to our inbox &mdash; we usually reply within one business day.</p>
@@ -1203,6 +1217,21 @@
       document.body.classList.remove('nav-open');
     });
   });
+
+  // Show a success/error message after the contact form redirects back.
+  (function(){
+    var params = new URLSearchParams(window.location.search);
+    var status = document.getElementById('formStatus');
+    if(!status || !params.has('sent')) return;
+    if(params.get('sent') === '1'){
+      status.textContent = '✓ Thanks! Your message has been sent — we’ll get back to you soon.';
+      status.className = 'form-status success';
+    } else {
+      status.textContent = 'Sorry, something went wrong. Please email us directly at info@skillroute.pk.';
+      status.className = 'form-status error';
+    }
+    status.style.display = 'block';
+  })();
 </script>
 
 </body>
